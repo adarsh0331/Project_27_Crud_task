@@ -351,27 +351,6 @@ sudo netstat -tulpn | grep :80
 # Stop conflicting service or change Nginx port in docker-compose.yml
 ```
 
-### Issue: GitHub Actions deployment fails
-
-1. Check Actions tab for error logs
-2. Verify all secrets are set correctly
-3. Test SSH connection manually:
-   ```bash
-   ssh -i ~/.ssh/github_actions_deploy ubuntu@your-vm-ip
-   ```
-4. Verify Docker Hub credentials
-
-### Issue: Images not pulling
-
-```bash
-# Login to Docker Hub manually
-docker login
-
-# Pull images manually
-docker pull yourusername/mean-backend:latest
-docker pull yourusername/mean-frontend:latest
-```
-
 ## 📊 Architecture Diagram
 
 ```
@@ -459,4 +438,14 @@ For issues:
 - [ ] All CRUD operations working
 
 ---
+<img width="1917" height="822" alt="image" src="https://github.com/user-attachments/assets/8812fa5d-ea1d-4506-b2b0-f771bc0375ad" />
+
+<img width="1916" height="831" alt="image" src="https://github.com/user-attachments/assets/bba23efb-c51c-446c-9605-0daa0ab4bdef" />
+
+<img width="1914" height="875" alt="image" src="https://github.com/user-attachments/assets/5f4c8788-fd7b-43ac-830f-29cc92712687" />
+
+<img width="1919" height="838" alt="image" src="https://github.com/user-attachments/assets/705844f7-851b-4c65-ac58-b5b14082fe44" />
+
+<img width="1919" height="801" alt="image" src="https://github.com/user-attachments/assets/bb96f378-daf5-4002-a069-fd9f4d2757ba" />
+
 ## Browser → Frontend → API call → Backend → MongoDB → Save data → Return response → UI updates
