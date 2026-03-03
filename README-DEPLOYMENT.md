@@ -125,21 +125,6 @@ docker login -u yourusername
    - HTTP (80) from anywhere (0.0.0.0/0)
 5. Launch and download key pair
 
-**Azure:**
-1. Create Virtual Machine
-2. Choose Ubuntu 22.04 LTS
-3. Configure Network Security Group:
-   - Allow SSH (22)
-   - Allow HTTP (80)
-4. Create and download SSH key
-
-**GCP:**
-1. Create VM instance
-2. Choose Ubuntu 22.04 LTS
-3. Configure firewall rules:
-   - Allow SSH (22)
-   - Allow HTTP (80)
-
 ### Step 2: Install Docker on VM
 
 SSH into your VM:
@@ -172,20 +157,6 @@ docker-compose --version
 # Logout and login again for group changes
 exit
 # SSH back in
-```
-
-### Step 3: Setup SSH Key for GitHub Actions
-
-```bash
-# Generate SSH key pair (on your local machine or VM)
-ssh-keygen -t rsa -b 4096 -C "github-actions-deploy"
-# Save as: ~/.ssh/github_actions_deploy
-
-# Copy public key to VM authorized_keys
-ssh-copy-id -i ~/.ssh/github_actions_deploy.pub ubuntu@your-vm-ip
-
-# Test SSH connection
-ssh -i ~/.ssh/github_actions_deploy ubuntu@your-vm-ip
 ```
 
 ### Step 4: Clone Repository on VM
@@ -221,7 +192,7 @@ The workflow file (`.github/workflows/ci-cd.yml`) is already created. It:
 
 **To get SSH key content:**
 ```bash
-cat ~/.ssh/github_actions_deploy
+Copy the private key
 # Copy the entire output including -----BEGIN and -----END lines
 ```
 
@@ -268,20 +239,7 @@ docker-compose ps
 docker-compose logs -f
 ```
 
-### Option 2: Using Deployment Script
-
-```bash
-# Make script executable
-chmod +x deploy.sh
-
-# Run deployment
-./deploy.sh
-
-# Or with build
-./deploy.sh --build
-```
-
-### Option 3: Automated via CI/CD
+### Option 2: Automated via CI/CD
 
 Just push to main/master branch - GitHub Actions handles everything!
 
@@ -501,5 +459,3 @@ For issues:
 - [ ] All CRUD operations working
 
 ---
-
-**🎉 Congratulations! Your MEAN stack application is now fully containerized and deployed!**
